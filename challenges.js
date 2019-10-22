@@ -4,6 +4,7 @@
 
 /**Construct a function union that takes an input array of arrays, compares each array, and returns a new flat array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array.  */
 
+
 function union(arr) {
   let newArr = [];
   for (var i = 0; i < arr.length; i++) {
