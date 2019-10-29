@@ -1,12 +1,11 @@
 // Game values
-
 let min = 1,
   max = 10,
   winningNum = getRandomNum(min, max),
   guessesLeft = 3;
 
 // UI Elements
-const game = document.querySelector('game'),
+const game = document.querySelector('#game'),
   minNum = document.querySelector('.min-num'),
   maxNum = document.querySelector('.max-num'),
   guessBtn = document.querySelector('#guess-btn'),
@@ -19,18 +18,22 @@ maxNum.textContent = max;
 
 // Play again event listener
 game.addEventListener('mousedown', function(e) {
+  guessInput.disabled = false;
   if (e.target.className === 'play-again') {
     window.location.reload();
   }
-  e.preventDefault();
 });
 
 guessBtn.addEventListener('click', function() {
+  console.log(guessInput.value, ' is value');
+  guessInput.disabled = false;
   let guess = parseInt(guessInput.value);
 
+  // Validate input
   if (isNaN(guess) || guess < min || guess > max) {
     setMessage(`Please enter a number between ${min} and ${max}`, 'red');
   }
+
   // Check if won
   if (guess === winningNum) {
     gameOver(true, `${winningNum} is correct! You WIN!`);
@@ -82,7 +85,7 @@ function gameOver(won, msg) {
 }
 
 // Get Winning Number
-function getWinningNum(min, max) {
+function getRandomNum(min, max) {
   // generates num between one and ten
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
